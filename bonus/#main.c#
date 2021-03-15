@@ -1,0 +1,43 @@
+/*
+** EPITECH PROJECT, 2019
+** n4s
+** File description:
+** bonus for n4s
+*/
+
+#include "n4s.h"
+#include <ncurses.h>
+
+void key_loop(int key)
+{
+    //initscr();
+    while(1) {
+        //key = getch();
+        //printf("Lecterminal actuel comporte %d lignes et %d colonnes\n", LINES, COLS); 
+        refresh();  // Rafraîchit la fenêtre par défaut (stdscr) afin d'afficher le message
+        keypad(stdscr, TRUE);
+        key = getch(); 
+        if (key == ' ') {  // 410 est le code de la touche générée lorsqu'on redimensionne le terminal
+            break;
+        }
+    }
+    endwin();
+    if (key == ' ')
+         write(1, "maz\n", 4);
+    /* while (getch() != 410) { */
+    /*     keypad(stdscr, TRUE); */
+    /*     key = getch(); */
+    /*     if (key == ' ') */
+    /*         write(1, "dom\n", 4); */
+    /*     endwin(); */
+    /* } */
+}
+
+int main(int ac, char **av)
+{
+    int key = 0;
+
+    exec_cmd("START_SIMULATION\n");
+    _loop(key);
+    return (1);
+}
